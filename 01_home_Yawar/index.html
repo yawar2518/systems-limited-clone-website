@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Systems Limited Clone - Home</title>
     <link rel="stylesheet" href="../common/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,9 +39,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../02_services_Inayat/services.html">All Services</a></li>
-                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#digital">Digital Transformation</a></li>
-                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#consulting">Consulting</a></li>
-                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#software">Software Development</a></li>
+                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#digital">Digital</a></li>
+                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#data-analytics">Data & Analytics</a></li>
+                            <li><a class="dropdown-item" href="../02_services_Inayat/services.html#cloud">Cloud</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -72,14 +74,331 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with Video Background -->
         <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Transforming Businesses Through Technology</h1>
-                <p class="hero-subtitle">We deliver innovative digital solutions that drive growth</p>
-                <a href="../02_services_Inayat/services.html" class="btn btn-primary btn-lg hero-btn">Explore Services</a>
+            <video autoplay muted loop class="hero-video">
+                <source src="assets/City Scape 5 sec.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay-dark"></div>
+            <div class="container h-100">
+                <div class="row align-items-center h-100">
+                    <div class="col-lg-8 hero-content" data-aos="fade-up">
+                        <h1 class="hero-title">We <span class="highlight">reimagine</span><br>tomorrow</h1>
+                        <p class="hero-subtitle">Driving innovation and improving lives with AI-driven intelligence</p>
+                        <button class="hero-search-btn" id="heroSearchBtn">
+                            <i class="fas fa-search"></i> Search our services
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Services Section -->
+        <section class="services-intro-section py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center mb-5">
+                        <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+                        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                            Driving innovation and improving lives with AI-driven intelligence
+                        </p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-intro-card">
+                            <div class="service-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>AI Transformation</h3>
+                            <p>Leverage cutting-edge AI solutions to drive digital transformation and innovation across your organization.</p>
+                            <a href="../02_services_Inayat/services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-intro-card">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Data & Analytics</h3>
+                            <p>Transform your data into actionable insights with our advanced analytics and machine learning capabilities.</p>
+                            <a href="../02_services_Inayat/services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-intro-card">
+                            <div class="service-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Cloud Solutions</h3>
+                            <p>Modernize your infrastructure with secure, scalable cloud solutions tailored to your business needs.</p>
+                            <a href="../02_services_Inayat/services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-intro-card">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Digital Services</h3>
+                            <p>End-to-end digital solutions that enhance customer experience and operational efficiency.</p>
+                            <a href="../02_services_Inayat/services.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Insights Section -->
+        <section class="insights-section py-5 bg-light">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-title" data-aos="fade-up">Featured Insights</h2>
+                        <p class="section-subtitle text-muted" data-aos="fade-up" data-aos-delay="100">
+                            Stay updated with our latest industry insights and market trends
+                        </p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="insight-card gradient-purple">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Market Trends 2026</h3>
+                            <p>Explore the latest market trends shaping digital transformation strategies.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="insight-card gradient-blue">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>AI Impact Analysis</h3>
+                            <p>Understanding the transformative power of artificial intelligence in enterprises.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="insight-card gradient-orange">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>Digital Strategy Guide</h3>
+                            <p>Comprehensive guide to building a successful digital transformation strategy.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="insight-card gradient-green">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <h3>Cloud Adoption Trends</h3>
+                            <p>Key insights into cloud adoption patterns and best practices.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="insight-card gradient-cyan">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Data Security Report</h3>
+                            <p>Latest findings on enterprise data security and compliance requirements.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="insight-card gradient-pink">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>IoT Innovation</h3>
+                            <p>Exploring the latest innovations in Internet of Things technology.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section py-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+                        <div class="stat-box">
+                            <div class="stat-number" data-target="48">0</div>
+                            <div class="stat-label">Years of Excellence</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-box">
+                            <div class="stat-number" data-target="7700">0</div>
+                            <div class="stat-label">Expert Professionals</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-box">
+                            <div class="stat-number" data-target="16">0</div>
+                            <div class="stat-label">Global Locations</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-box">
+                            <div class="stat-number" data-target="300">0</div>
+                            <div class="stat-label">Active Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted Partners Section -->
+        <section class="partners-section py-5 bg-light">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-title" data-aos="fade-up">We entrench business goals for you through our collective experience with strategic partner ecosystem</h2>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-center g-4">
+                    <div class="col-lg-2 col-md-3 col-6" data-aos="zoom-in">
+                        <div class="partner-logo">
+                            <i class="fab fa-microsoft fa-3x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="partner-logo">
+                            <i class="fab fa-aws fa-3x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="partner-logo">
+                            <i class="fab fa-google fa-3x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="partner-logo">
+                            <i class="fab fa-salesforce fa-3x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="partner-logo">
+                            <i class="fab fa-slack fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team/Culture Section with Image -->
+        <section class="team-section py-5">
+            <div class="team-image-full">
+                <img src="assets/career.png" alt="Team Collaboration" class="team-image">
+                <div class="team-overlay"></div>
+                <div class="team-content-overlay" data-aos="fade-up">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h2 class="section-title text-white">Translating technology into a <span class="highlight">positive impact</span></h2>
+                                <p class="team-description text-white">
+                                    We believe in the transformative power of technology. Our team of experts works collaboratively to solve complex business challenges and drive meaningful change.
+                                </p>
+                                <div class="team-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div>
+                                            <h4 class="text-white">Expert Team</h4>
+                                            <p class="text-white">Highly skilled professionals with deep domain expertise</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div>
+                                            <h4 class="text-white">Innovation Culture</h4>
+                                            <p class="text-white">Continuous learning and cutting-edge solution development</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div>
+                                            <h4 class="text-white">Client Success</h4>
+                                            <p class="text-white">Dedicated to delivering measurable business outcomes</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                        <a href="../04_contact_Misha/contact.html" class="btn btn-light btn-lg cta-btn">
+                            Get in Touch <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links Section -->
+        <section class="quick-links-section py-5 bg-light">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                        <div class="quick-link-box">
+                            <h3>Services</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Digital</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Data & Analytics</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Cloud</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Business Process</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="quick-link-box">
+                            <h3>Industries</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Financial Services</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Healthcare</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Retail</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Manufacturing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="quick-link-box">
+                            <h3>Insights</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Blog</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Case Studies</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Whitepapers</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="quick-link-box">
+                            <h3>Company</h3>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Careers</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Contact</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button -->
+        <button class="scroll-to-top" id="scrollToTop">
+            <i class="fas fa-chevron-up"></i>
+        </button>
     </main>
 
     <!-- Footer -->
@@ -134,6 +453,11 @@
     </footer>
 
     <script src="../common/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // NAVBAR SCROLL EFFECT - Dynamic Color Change
     // ============================================
     const navbar = document.getElementById('mainNavbar');
-    const logoWhite = document.getElementById('logoWhite');
-    const logoDark = document.getElementById('logoDark');
     
     function handleNavbarScroll() {
         if (window.scrollY > 50) {
@@ -19,47 +17,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Initial check
     handleNavbarScroll();
-    
-    // Listen for scroll
     window.addEventListener('scroll', handleNavbarScroll);
     
     // ============================================
     // SEARCH OVERLAY FUNCTIONALITY
     // ============================================
     const searchBtn = document.getElementById('searchBtn');
+    const heroSearchBtn = document.getElementById('heroSearchBtn');
     const searchOverlay = document.getElementById('searchOverlay');
     const closeSearch = document.getElementById('closeSearch');
     const searchInput = document.querySelector('.search-input');
     
-    if (searchBtn && searchOverlay) {
+    function openSearch() {
+        searchOverlay.classList.add('active');
+        setTimeout(() => {
+            searchInput.focus();
+        }, 400);
+    }
+
+    function closeSearchOverlay() {
+        searchOverlay.classList.remove('active');
+    }
+    
+    if (searchBtn) {
         searchBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            searchOverlay.classList.add('active');
-            setTimeout(() => {
-                searchInput.focus();
-            }, 400);
-        });
-        
-        closeSearch.addEventListener('click', function() {
-            searchOverlay.classList.remove('active');
-        });
-        
-        // Close on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
-                searchOverlay.classList.remove('active');
-            }
-        });
-        
-        // Close on click outside
-        searchOverlay.addEventListener('click', function(e) {
-            if (e.target === searchOverlay) {
-                searchOverlay.classList.remove('active');
-            }
+            openSearch();
         });
     }
+
+    if (heroSearchBtn) {
+        heroSearchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openSearch();
+        });
+    }
+    
+    if (closeSearch) {
+        closeSearch.addEventListener('click', closeSearchOverlay);
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+            closeSearchOverlay();
+        }
+    });
+    
+    searchOverlay.addEventListener('click', function(e) {
+        if (e.target === searchOverlay) {
+            closeSearchOverlay();
+        }
+    });
     
     // ============================================
     // SMOOTH SCROLL FOR ANCHOR LINKS
@@ -98,21 +107,174 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // ============================================
-    // ACTIVE NAV LINK HIGHLIGHT
-    // ============================================
-    const currentPage = window.location.pathname.split('/').pop();
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href.includes(currentPage)) {
-            link.classList.add('active');
-        }
-    });
-    
 });
 
 // ============================================
 // Yawar - Home Page Specific JavaScript
 // ============================================
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS (Animate on Scroll)
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
+
+    // ============================================
+    // SCROLL TO TOP BUTTON
+    // ============================================
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ============================================
+    // SERVICE CARD HOVER EFFECT
+    // ============================================
+    const serviceCards = document.querySelectorAll('.service-intro-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // ============================================
+    // INSIGHT CARD HOVER EFFECT
+    // ============================================
+    const insightCards = document.querySelectorAll('.insight-card');
+    insightCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // ============================================
+    // STATS COUNTER ANIMATION
+    // ============================================
+    const stats = [
+        { element: document.querySelectorAll('.stat-number')[0], target: 48, duration: 2000 },
+        { element: document.querySelectorAll('.stat-number')[1], target: 7700, duration: 2000 },
+        { element: document.querySelectorAll('.stat-number')[2], target: 16, duration: 2000 },
+        { element: document.querySelectorAll('.stat-number')[3], target: 300, duration: 2000 }
+    ];
+
+    let statsAnimated = false;
+
+    function animateStats() {
+        if (statsAnimated) return;
+
+        const statsSection = document.querySelector('.stats-section');
+        if (!statsSection) return;
+
+        const rect = statsSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            statsAnimated = true;
+
+            stats.forEach((stat, index) => {
+                const element = stat.element;
+                const target = stat.target;
+                const duration = stat.duration;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const counter = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(counter);
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+        }
+    }
+
+    window.addEventListener('scroll', animateStats);
+    window.addEventListener('load', animateStats);
+
+    // ============================================
+    // PARALLAX EFFECT FOR TEAM IMAGE
+    // ============================================
+    const teamImage = document.querySelector('.team-image');
+    if (teamImage) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const elementOffset = teamImage.offsetTop;
+            const windowHeight = window.innerHeight;
+
+            if (scrolled + windowHeight > elementOffset) {
+                const yPos = (scrolled + windowHeight - elementOffset) * 0.5;
+                teamImage.style.transform = `translateY(${yPos * 0.1}px)`;
+            }
+        });
+    }
+
+    // ============================================
+    // SMOOTH PAGE LOAD ANIMATION
+    // ============================================
+    document.body.style.opacity = '1';
+
+    // ============================================
+    // LAZY LOAD IMAGES
+    // ============================================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // ============================================
+    // HERO SECTION FADE ON SCROLL
+    // ============================================
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroHeight = document.querySelector('.hero-section').offsetHeight;
+            const opacity = Math.max(0, 1 - scrolled / (heroHeight / 2));
+            heroContent.style.opacity = opacity;
+        });
+    }
+});
+
+// ============================================
+// PAGE TRANSITION EFFECTS
+// ============================================
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+});
