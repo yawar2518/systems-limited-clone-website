@@ -116,3 +116,95 @@ document.addEventListener('DOMContentLoaded', function() {
 // Salar - Insights Page Specific JavaScript
 // ============================================
 
+    // ============================================
+    // BLOG FILTER FUNCTIONALITY
+    // ============================================
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+
+            // Filter blog cards
+            blogCards.forEach(card => {
+                if (filter === 'all') {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeIn 0.3s ease-in-out';
+                } else if (card.getAttribute('data-category') === filter) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeIn 0.3s ease-in-out';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // ============================================
+    // LOAD MORE FUNCTIONALITY
+    // ============================================
+    const loadMoreBtn = document.querySelector('.load-more-btn');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            // In a real app, this would load more articles from a server
+            alert('More articles would load here! (Connected to a backend)');
+        });
+    }
+
+    // ============================================
+    // NEWSLETTER FORM
+    // ============================================
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            if (email) {
+                alert('Thank you for subscribing with: ' + email);
+                emailInput.value = '';
+            }
+        });
+    }
+
+    // ============================================
+    // SMOOTH SCROLL TO SECTION
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+;
+
+// ============================================
+// CSS Animation for Fade In
+// ============================================
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);
