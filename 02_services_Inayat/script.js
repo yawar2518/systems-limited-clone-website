@@ -326,6 +326,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     createProgressBar();
 
+    // ============================================
+    // SCROLL ANIMATIONS - Initialize
+    // ============================================
+    function initScrollAnimations() {
+        const animatedElements = document.querySelectorAll('[class*="aos-"]');
+        
+        if (animatedElements.length === 0) return;
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                }
+            });
+        }, observerOptions);
+        
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    initScrollAnimations();
+
     // Console log for debugging
     console.log('Services Page JavaScript Loaded Successfully');
     console.log('Total Service Cards:', serviceCards.length);

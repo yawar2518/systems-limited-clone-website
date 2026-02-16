@@ -528,6 +528,58 @@ if (heroSubtitle) {
     setTimeout(typeWriter, 1000);
 }
 
+// ============================================
+// SCROLL ANIMATIONS - Initialize
+// ============================================
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('[class*="aos-"]');
+    
+    if (animatedElements.length === 0) return;
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+            }
+        });
+    }, observerOptions);
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+initScrollAnimations();
+
+// ============================================
+// PROGRESS BAR - Scroll Indicator
+// ============================================
+const createProgressBar = () => {
+    const progressBar = document.createElement('div');
+    progressBar.style.position = 'fixed';
+    progressBar.style.top = '0';
+    progressBar.style.left = '0';
+    progressBar.style.width = '0%';
+    progressBar.style.height = '4px';
+    progressBar.style.background = 'linear-gradient(90deg, var(--systems-blue), var(--systems-blue-light))';
+    progressBar.style.zIndex = '10000';
+    progressBar.style.transition = 'width 0.1s ease';
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
+};
+
+createProgressBar();
+
 // Console log for debugging
 console.log('Contact Page JavaScript Loaded Successfully');
 console.log('AOS Initialized');

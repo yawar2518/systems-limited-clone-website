@@ -1,7 +1,7 @@
 /* Variables, reset, header, and footer */
 :root {
   /* Branding Colors */
-  --systems-blue: #0047AB;    /* Primary Brand Blue */
+  --systems-blue: #f26223;    /* Primary Brand Orange */
   --systems-dark: #121212;    /* Near Black for Text/Backgrounds */
   --systems-light: #F8F9FA;   /* Light Grey Backgrounds */
   --systems-gray: #6C757D;    /* Secondary Text */
@@ -21,4 +21,89 @@ body {
 .navbar {
   height: var(--nav-height);
   transition: var(--transition-smooth);
+}
+/* ============================================
+   SCROLL ANIMATION STYLES - Global
+   ============================================ */
+
+/* Animate on Scroll Classes */
+.aos-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.aos-fade-up.aos-animate {
+    animation: fadeUpScroll 0.8s ease-out forwards;
+}
+
+.aos-fade-left {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.aos-fade-left.aos-animate {
+    animation: fadeLeftScroll 0.8s ease-out forwards;
+}
+
+.aos-fade-right {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.aos-fade-right.aos-animate {
+    animation: fadeRightScroll 0.8s ease-out forwards;
+}
+
+.aos-zoom-in {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.aos-zoom-in.aos-animate {
+    animation: zoomInScroll 0.8s ease-out forwards;
+}
+
+/* Keyframe Animations */
+@keyframes fadeUpScroll {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeftScroll {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRightScroll {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomInScroll {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

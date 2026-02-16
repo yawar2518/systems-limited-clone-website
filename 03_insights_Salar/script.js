@@ -11,19 +11,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoWhite = document.getElementById('logoWhite');
     const logoDark = document.getElementById('logoDark');
     
+    let ticking = false;
+    
     function handleNavbarScroll() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        ticking = false;
+    }
+    
+    function requestScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(handleNavbarScroll);
+            ticking = true;
         }
     }
     
     // Initial check
-    handleNavbarScroll();
-    
-    // Listen for scroll
-    window.addEventListener('scroll', handleNavbarScroll);
+    if (navbar) {
+        handleNavbarScroll();
+        // Listen for scroll with throttling
+        window.addEventListener('scroll', requestScroll, { passive: true });
+    }
     
     // ============================================
     // SEARCH OVERLAY FUNCTIONALITY
@@ -208,3 +221,100 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ============================================
+// SCROLL ANIMATION - Observe Elements
+// ============================================
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('[class*="aos-"]');
+    
+    if (animatedElements.length === 0) return;
+    
+    // Create Intersection Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+                // Optional: stop observing after animation
+                // observer.unobserve(entry.target);
+            } else {
+                // Uncomment to re-animate on scroll up
+                // entry.target.classList.remove('aos-animate');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all animated elements
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Initialize scroll animations when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Add animation classes to blog cards
+    const blogCards = document.querySelectorAll('.blog-card');
+    blogCards.forEach(card => {
+        if (!card.classList.contains('aos-fade-up')) {
+            card.classList.add('aos-fade-up');
+        }
+    });
+    
+    // Add animation classes to page header and other sections
+    const pageHeader = document.querySelector('.page-header');
+    if (pageHeader && !pageHeader.classList.contains('aos-fade-up')) {
+        pageHeader.classList.add('aos-fade-up');
+    }
+    
+    const blogFilter = document.querySelector('.blog-filter-section');
+    if (blogFilter && !blogFilter.classList.contains('aos-fade-up')) {
+        blogFilter.classList.add('aos-fade-up');
+    }
+    
+    const footer = document.querySelector('footer');
+    if (footer && !footer.classList.contains('aos-fade-up')) {
+        footer.classList.add('aos-fade-up');
+    }
+    
+    // Initialize the observer
+    initScrollAnimations();
+
+    // ============================================
+    // PROGRESS BAR - Scroll Indicator
+    // ============================================
+    const createProgressBar = () => {
+        const progressBar = document.createElement('div');
+        progressBar.style.position = 'fixed';
+        progressBar.style.top = '0';
+        progressBar.style.left = '0';
+        progressBar.style.width = '0%';
+        progressBar.style.height = '4px';
+        progressBar.style.background = 'linear-gradient(90deg, var(--systems-blue), var(--systems-blue-light))';
+        progressBar.style.zIndex = '10000';
+        progressBar.style.transition = 'width 0.1s ease';
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+    };
+
+    createProgressBar();
+});
+
+// Re-initialize animations after filter changes
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        setTimeout(() => {
+            initScrollAnimations();
+        }, 100);
+    });
+});

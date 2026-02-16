@@ -2,9 +2,9 @@
    CSS Variables - Systems Limited Color Palette
    ============================================ */
 :root {
-    --systems-blue: #0047AB;
-    --systems-blue-dark: #003380;
-    --systems-blue-light: #1a5dc8;
+    --systems-blue: #f26223;
+    --systems-blue-dark: #d94c11;
+    --systems-blue-light: #ff7a47;
     --systems-dark: #121212;
     --systems-gray: #6c757d;
     --systems-gray-light: #f8f9fa;
